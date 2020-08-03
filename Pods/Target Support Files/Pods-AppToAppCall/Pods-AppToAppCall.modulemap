@@ -1,0 +1,6 @@
+framework module Pods_AppToAppCall {
+  umbrella header "Pods-AppToAppCall-umbrella.h"
+
+  export *
+  module * { export * }
+}
