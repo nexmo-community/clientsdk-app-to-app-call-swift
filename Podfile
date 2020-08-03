@@ -6,5 +6,5 @@ target 'AppToAppCall' do
   use_frameworks!
 
   # Pods for AppToAppCall
-  pod 'NexmoClient', '~> 2.2.1'
+  pod 'NexmoClient'
 end
