@@ -36,6 +36,9 @@ class CallViewController: UIViewController {
         
         callButton.setTitle("Call \(user.callPartnerName)", for: .normal)
         callButton.translatesAutoresizingMaskIntoConstraints = false
+        if user.name == "Alice" {
+            callButton.alpha = 0
+        }
         view.addSubview(callButton)
         
         hangUpButton.setTitle("Hang up", for: .normal)
@@ -43,7 +46,7 @@ class CallViewController: UIViewController {
         setHangUpButtonHidden(true)
         view.addSubview(hangUpButton)
         
-        setStatusLabelText("")
+        setStatusLabelText("Ready to receive call...")
         statusLabel.textAlignment = .center
         statusLabel.translatesAutoresizingMaskIntoConstraints = false
         view.addSubview(statusLabel)
@@ -114,13 +117,13 @@ class CallViewController: UIViewController {
     @objc private func endCall() {
         call?.hangup()
         self.setHangUpButtonHidden(true)
-        self.setStatusLabelText("")
+        self.setStatusLabelText("Ready to receive call...")
     }
 
     @objc private func makeCall() {
         setStatusLabelText("Calling \(user.callPartnerName)")
 
-        client.call(user.callPartnerName, callHandler: .inApp) { error, call in
+        client.call(user.callPartnerName, callHandler: .server) { error, call in
             if error != nil {
                 self.setStatusLabelText(error?.localizedDescription)
                 return
